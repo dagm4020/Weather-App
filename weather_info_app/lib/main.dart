@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:math'; 
 
 void main() {
   runApp(MyWeatherApp());
@@ -12,8 +13,7 @@ class MyWeatherApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primaryColor: Colors.blue[600],
-        colorScheme:
-            ColorScheme.fromSwatch().copyWith(secondary: Colors.orange),
+        colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.orange),
       ),
       home: WeatherHomePage(),
     );
@@ -27,16 +27,20 @@ class WeatherHomePage extends StatefulWidget {
 
 class _WeatherHomePageState extends State<WeatherHomePage> {
   final TextEditingController _controller = TextEditingController();
-
+  
   String cityName = '';
   String temperature = '';
   String weatherCondition = '';
 
+  final List<String> conditions = ['Sunny', 'Cloudy', 'Rainy'];
+
   void fetchWeather() {
     setState(() {
       cityName = _controller.text;
-      temperature = '25°C';
-      weatherCondition = 'Sunny';
+      Random random = Random();
+      int temp = random.nextInt(16) + 15;
+      temperature = '$temp°C';
+      weatherCondition = conditions[random.nextInt(conditions.length)];
     });
   }
 
@@ -67,37 +71,26 @@ class _WeatherHomePageState extends State<WeatherHomePage> {
           ),
           SizedBox(height: 16),
           Container(
-            width: MediaQuery.of(context).size.width * 0.8,
-            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+            width: MediaQuery.of(context).size.width * 0.85,
+            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
             decoration: BoxDecoration(
               color: Colors.blue.withOpacity(0.5),
               borderRadius: BorderRadius.circular(15),
             ),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Text(
                   'City: $cityName',
-                  style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 12, color: Colors.white, fontWeight: FontWeight.bold),
                 ),
-                SizedBox(width: 20),
                 Text(
                   'Temperature: $temperature',
-                  style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 12, color: Colors.white, fontWeight: FontWeight.bold),
                 ),
-                SizedBox(width: 20),
                 Text(
                   'Condition: $weatherCondition',
-                  style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 12, color: Colors.white, fontWeight: FontWeight.bold),
                 ),
               ],
             ),
@@ -134,8 +127,7 @@ class _WeatherHomePageState extends State<WeatherHomePage> {
                     child: Text('Fetch Weather'),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.orange,
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
                       textStyle: TextStyle(fontSize: 18),
                     ),
                   ),
