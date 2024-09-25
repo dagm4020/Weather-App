@@ -71,10 +71,10 @@ class _WeatherHomePageState extends State<WeatherHomePage> {
           ),
           SizedBox(height: 16),
           Container(
-            width: MediaQuery.of(context).size.width * 0.85,
-            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+            width: MediaQuery.of(context).size.width * 0.9,
+            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
             decoration: BoxDecoration(
-              color: Colors.blue.withOpacity(0.5),
+              color: Colors.blue.withOpacity(0.7),
               borderRadius: BorderRadius.circular(15),
             ),
             child: Row(
@@ -82,15 +82,15 @@ class _WeatherHomePageState extends State<WeatherHomePage> {
               children: <Widget>[
                 Text(
                   'City: $cityName',
-                  style: TextStyle(fontSize: 12, color: Colors.white, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 14, color: Colors.white, fontWeight: FontWeight.w700),
                 ),
                 Text(
                   'Temperature: $temperature',
-                  style: TextStyle(fontSize: 12, color: Colors.white, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 14, color: Colors.white, fontWeight: FontWeight.w700),
                 ),
                 Text(
                   'Condition: $weatherCondition',
-                  style: TextStyle(fontSize: 12, color: Colors.white, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 14, color: Colors.white, fontWeight: FontWeight.w700),
                 ),
               ],
             ),
@@ -124,10 +124,7 @@ class _WeatherHomePageState extends State<WeatherHomePage> {
                   SizedBox(height: 20),
                   ElevatedButton(
                     onPressed: fetchWeather,
-                    child: Text(
-                      'Fetch Weather',
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
+                    child: Text('Fetch Weather'),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.orange,
                       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
