@@ -124,7 +124,10 @@ class _WeatherHomePageState extends State<WeatherHomePage> {
                   SizedBox(height: 20),
                   ElevatedButton(
                     onPressed: fetchWeather,
-                    child: Text('Fetch Weather'),
+                    child: Text(
+                      'Fetch Weather',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.orange,
                       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
